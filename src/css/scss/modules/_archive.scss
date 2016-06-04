@@ -18,3 +18,29 @@
     }
   }
 }
+
+/* ==========================================================================
+  Media Queries
+  ========================================================================== */
+
+@media screen and (min-width: $screen-sm-min) {
+  .archive {
+    margin-top:20px;
+    &__title {
+      float:left;
+      line-height: 30px;
+      margin-right: 10px;
+    }
+
+    ul {
+      li {
+        padding: 5px 10px;
+        margin-right: 10px;
+      }
+    }
+  }
+}
+@media screen and (min-width: $screen-md-min) {
+}
+@media screen and (min-width: $screen-lg-min) {
+}

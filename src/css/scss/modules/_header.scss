@@ -54,20 +54,22 @@ header {
       float:left;
       margin-right:30px;
       position:relative;
+      width:auto;
       &:after {
         content:'';
-            height: 67px;
+        height: 67px;
         width:1px;
         background: #CCC;
         display: block;
         position: absolute;
-        right:-12px;
+        right:-14px;
         top:0px;
       }
     }
     .header__right {
       margin-top: 10px;
       float:left;
+      width: calc(100% - 187px);
     }
   }
 }

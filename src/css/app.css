@@ -1560,7 +1560,8 @@ header {
   header .header__left {
     float: left;
     margin-right: 30px;
-    position: relative; }
+    position: relative;
+    width: auto; }
     header .header__left:after {
       content: '';
       height: 67px;
@@ -1568,11 +1569,12 @@ header {
       background: #CCC;
       display: block;
       position: absolute;
-      right: -12px;
+      right: -14px;
       top: 0px; }
   header .header__right {
     margin-top: 10px;
-    float: left; } }
+    float: left;
+    width: calc(100% - 187px); } }
 .archive {
   font-size: 14px; }
   .archive__title {
@@ -1587,3 +1589,17 @@ header {
     .archive ul li:hover {
       cursor: pointer;
       text-decoration: underline; }
+
+/* ==========================================================================
+  Media Queries
+  ========================================================================== */
+@media screen and (min-width: 768px) {
+  .archive {
+    margin-top: 20px; }
+    .archive__title {
+      float: left;
+      line-height: 30px;
+      margin-right: 10px; }
+    .archive ul li {
+      padding: 5px 10px;
+      margin-right: 10px; } }
