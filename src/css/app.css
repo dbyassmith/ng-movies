@@ -1539,9 +1539,19 @@ header {
   header form input[type=submit] {
     height: 45px;
     width: 45px;
-    background: #333333;
+    background-image: url("../images/icon-search.png");
+    background-position: center;
+    background-color: #333333;
+    background-repeat: no-repeat;
     border: 0px;
     float: left; }
+    @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+      header form input[type=submit] {
+        background-image: url("../images/icon-search@2x.png");
+        background-size: 18px 18px; } }
+    header form input[type=submit]:hover {
+      cursor: pointer;
+      background-color: #29ABE2; }
   header .header__left {
     float: left;
     position: relative;
