@@ -10,9 +10,10 @@ movieControllers.controller('MoviesCtrl', ['$scope', '$http','$state',
     
       $scope.search = "";
       $scope.results = [];
-      $scope.archive = [];
 
-      var archive = $scope.archive;
+      var archive;
+      
+
 
       $scope.submit = function() {
         if ($scope.search) {
@@ -27,6 +28,12 @@ movieControllers.controller('MoviesCtrl', ['$scope', '$http','$state',
           var data = response.data;
 
           data.Query = query;
+
+          if(!$scope.archive){
+            $scope.archive = [];
+
+            archive = $scope.archive;
+          }
 
           archive.push(data);
           
