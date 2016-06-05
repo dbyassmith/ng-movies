@@ -1519,7 +1519,7 @@ input {
 header {
   background: #F2F2F2;
   text-align: left;
-  padding: 50px 0px;
+  padding: 30px 0px;
   color: #333333; }
   header h1 {
     font-family: "Playfair Display", serif; }
@@ -1567,24 +1567,26 @@ header {
   Media Queries
   ========================================================================== */
 @media screen and (min-width: 768px) {
-  header .header__left {
-    float: left;
-    margin-right: 30px;
-    position: relative;
-    width: auto; }
-    header .header__left:after {
-      content: '';
-      height: 67px;
-      width: 1px;
-      background: #CCC;
-      display: block;
-      position: absolute;
-      right: -14px;
-      top: 0px; }
-  header .header__right {
-    margin-top: 10px;
-    float: left;
-    width: calc(100% - 187px); } }
+  header {
+    padding: 50px 0px; }
+    header .header__left {
+      float: left;
+      margin-right: 30px;
+      position: relative;
+      width: auto; }
+      header .header__left:after {
+        content: '';
+        height: 67px;
+        width: 1px;
+        background: #CCC;
+        display: block;
+        position: absolute;
+        right: -14px;
+        top: 0px; }
+    header .header__right {
+      margin-top: 10px;
+      float: left;
+      width: calc(100% - 187px); } }
 .archive {
   font-size: 14px; }
   .archive__title {
@@ -1614,19 +1616,26 @@ header {
       padding: 5px 10px;
       margin-right: 10px; } }
 .results {
-  padding: 50px 0; }
+  padding: 80px 0; }
   .results img {
     width: 100%; }
   .results__movie {
     padding-bottom: 150%;
     background-size: cover;
     position: relative;
-    margin-bottom: 50px; }
+    margin-bottom: 70px; }
     .results__movie:hover .tooltip {
       display: block; }
 
+/* ==========================================================================
+  Media Queries
+  ========================================================================== */
+@media screen and (min-width: 768px) {
+  .results {
+    padding: 50px 0px; }
+    .results__movie {
+      margin-bottom: 50px; } }
 .tooltip {
-  display: none;
   position: absolute;
   width: 100%;
   background: #CCC;
@@ -1647,3 +1656,10 @@ header {
     position: absolute;
     left: calc(50% - 5px);
     bottom: -10px; }
+
+/* ==========================================================================
+  Media Queries
+  ========================================================================== */
+@media screen and (min-width: 768px) {
+  .tooltip {
+    display: none; } }

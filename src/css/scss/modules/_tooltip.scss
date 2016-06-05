@@ -1,5 +1,4 @@
 .tooltip {
-  display: none;
   position: absolute;
   width: 100%;
   background: #CCC;
@@ -21,4 +20,18 @@
     left: calc(50% - 5px);
     bottom: -10px;
   }
+}
+
+/* ==========================================================================
+  Media Queries
+  ========================================================================== */
+
+@media screen and (min-width: $screen-sm-min) {
+  .tooltip {
+    display: none;
+  }
+}
+@media screen and (min-width: $screen-md-min) {
+}
+@media screen and (min-width: $screen-lg-min) {
 }
