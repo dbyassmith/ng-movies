@@ -29,18 +29,15 @@
       </div>  
     </div>
   </header>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-10">
-        <h1>Results</h1>
-        <ul >
-          <li ng-repeat="movie in results">
-            <img ng-src="{{movie.Poster}}" alt="">
-            <p>{{movie.Title}}</p>
-            <p>{{movie.Year}}</p>
+  <div class="results">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-sm-4 col-md-3" ng-repeat="movie in results">
+          <div class="results__movie" style="background-image:url('{{movie.Poster}}')">
+            <div class="tooltip">{{movie.Title}} ({{movie.Year}})</div>
+          </div>
 
-          </li>
-        </ul>
+        </div>
       </div>
     </div>
   </div>

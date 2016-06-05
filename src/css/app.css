@@ -1378,7 +1378,7 @@ span.CodeMirror-selectedtext {
   -ms-text-size-adjust: 100%; }
 
 body {
-  background-color: #fff;
+  background-color: #1A1A1A;
   color: #333;
   font-family: 'Karla', sans-serif;
   font-size: 14px;
@@ -1613,3 +1613,37 @@ header {
     .archive ul li {
       padding: 5px 10px;
       margin-right: 10px; } }
+.results {
+  padding: 50px 0; }
+  .results img {
+    width: 100%; }
+  .results__movie {
+    padding-bottom: 150%;
+    background-size: cover;
+    position: relative;
+    margin-bottom: 50px; }
+    .results__movie:hover .tooltip {
+      display: block; }
+
+.tooltip {
+  display: none;
+  position: absolute;
+  width: 100%;
+  background: #CCC;
+  font-size: 12px;
+  padding: 5px;
+  text-align: center;
+  top: -35px;
+  border-radius: 3px;
+  font-weight: bold; }
+  .tooltip:after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 10px 0 10px;
+    border-color: #CCC transparent transparent transparent;
+    position: absolute;
+    left: calc(50% - 5px);
+    bottom: -10px; }
