@@ -32,8 +32,8 @@
   <div class="results">
     <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-sm-4 col-md-3" ng-repeat="movie in results">
-          <div class="results__movie" style="background-image:url('{{ movie.Poster!='N/A' ? movie.Poster : 'images/no-poster.jpg'}}')">
+        <div class="col-xs-6 col-sm-4 col-md-3" ng-repeat="movie in results" >
+          <div class="results__movie" style="background-image:url('{{ movie.Poster!='N/A' ? movie.Poster : 'images/no-poster.jpg'}}')" ng-click="openModal(movie.imdbID)">
             <div class="tooltip-wrapper">
               <div class="tooltip">{{movie.Title}} ({{movie.Year}})</div>
             </div>
@@ -49,6 +49,32 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <button type="button" class="btn btn-default modal-close" data-dismiss="modal"></button>
+        <div class="row">
+          <div class="col-xs-12 col-sm-4">
+            <div class="image-wrap">
+              <img ng-src="{{ modalMovie.Poster!='N/A' ? modalMovie.Poster : 'images/no-poster.jpg'}}" alt="">
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-8">
+            <div class="modal-right">
+              <h2>{{modalMovie.Title}} ({{modalMovie.Year}})</h2>
+              <dl>
+                <dt>Rated:</dt><dd>{{modalMovie.Rated}}</dd>
+                <dt>Genre:</dt><dd>{{modalMovie.Genre}}</dd>
+                <dt>Runtime:</dt><dd>{{modalMovie.Runtime}}</dd>
+                <dt>Actors: </dt><dd>{{modalMovie.Actors}}</dd>
+              </dl>
+               <p>{{ modalMovie.Plot!='N/A' ? modalMovie.Plot : ''}}</p>
+            </div>
+          </div>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 </div>
 
 

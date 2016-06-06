@@ -11,13 +11,15 @@ movieControllers.controller('MoviesCtrl', ['$scope', '$http','$state',
       $scope.search = "";
       $scope.results = [];
       $scope.cacheMovies = [];
+      $scope.cacheMovieDetails = [];
+
 
       var archive;
 
       var cacheMovies = $scope.cacheMovies;
 
       
-
+      var cacheMovieDetails = $scope.cacheMovieDetails;
 
       $scope.submit = function() {
         if ($scope.search) {
@@ -103,6 +105,33 @@ movieControllers.controller('MoviesCtrl', ['$scope', '$http','$state',
         
 
         console.log(cacheMovies);
+
+      }
+
+      $scope.openModal = function(id){
+
+
+        var isCached = false;
+
+        cacheMovieDetails.forEach(function(cachedDetail){
+          if(cachedDetail.imdbID == id){
+            $scope.modalMovie = cachedDetail;
+            $('.modal').modal();
+            isCached = true;
+          }
+        });
+
+        if(!isCached){
+          $http.get("http://www.omdbapi.com/?i=" + id).then(function(response){
+            var movie = response.data;
+            $scope.modalMovie = movie;
+            $('.modal').modal();
+            cacheMovieDetails.push(movie);
+          }); 
+        }
+        
+        
+        
 
       }
     
