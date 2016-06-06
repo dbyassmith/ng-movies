@@ -101,6 +101,15 @@ movieControllers.controller('MoviesCtrl', ['$scope', '$http','$state',
         if(!isCached){
           cacheMovies.push(tempMovie);
         }
+        //Set the Rating in all previous archives
+        archive.forEach(function(archiveItem){
+          archiveItem.Search.forEach(function(movie){
+            if(movie.imdbID == id){
+              movie.Rating = num;
+            }
+      
+          });
+        });
       }
 
       //Open the details about a specific movie
