@@ -1529,29 +1529,42 @@ header {
     font-size: 16px;
     letter-spacing: 2px;
     margin-bottom: 5px; }
-  header form input[type=text] {
-    height: 45px;
-    border: 0px;
-    padding: 15px;
-    font-size: 16px;
-    width: calc(100% - 45px);
-    float: left; }
-  header form input[type=submit] {
-    height: 45px;
-    width: 45px;
-    background-image: url("../images/icon-search.png");
-    background-position: center;
-    background-color: #333333;
-    background-repeat: no-repeat;
-    border: 0px;
-    float: left; }
-    @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-      header form input[type=submit] {
-        background-image: url("../images/icon-search@2x.png");
-        background-size: 18px 18px; } }
-    header form input[type=submit]:hover {
-      cursor: pointer;
-      background-color: #29ABE2; }
+    header h2 span {
+      text-transform: lowercase; }
+  header form {
+    display: block; }
+    header form input[type=text] {
+      height: 45px;
+      border: 0px;
+      padding: 15px;
+      font-size: 16px;
+      width: calc(100% - 45px);
+      float: left; }
+    header form input[type=submit] {
+      height: 45px;
+      width: 45px;
+      background-image: url("../images/icon-search.png");
+      background-position: center;
+      background-color: #333333;
+      background-repeat: no-repeat;
+      border: 0px;
+      float: left; }
+      @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+        header form input[type=submit] {
+          background-image: url("../images/icon-search@2x.png");
+          background-size: 18px 18px; } }
+      header form input[type=submit]:hover {
+        cursor: pointer;
+        background-color: #29ABE2; }
+    header form.error .search {
+      background: #D36C74; }
+    header form.error:after {
+      content: 'Movie not Found!';
+      display: block;
+      position: absolute;
+      bottom: -5px;
+      color: #D36C74;
+      font-style: italic; }
   header .header__left {
     float: left;
     position: relative;

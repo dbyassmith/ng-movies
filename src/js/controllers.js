@@ -31,10 +31,7 @@ movieControllers.controller('MoviesCtrl', ['$scope', '$http','$state',
                 isPrevSearch = true;
               }
             });
-          } else {
-            $scope.archive = [];
-            archive = $scope.archive;
-          }
+          } 
 
           //If not in the archive make search on OMDb
           if(!isPrevSearch){
@@ -43,20 +40,31 @@ movieControllers.controller('MoviesCtrl', ['$scope', '$http','$state',
               
               var data = response.data;
 
-              data.Search.forEach(function(movie){
-                cacheMovies.forEach(function(cachedMovie){
-                  if(movie.imdbID == cachedMovie.imdbID){
-                    movie.Rating = cachedMovie.Rating;
-                    return;
-                  }
+              if(data.Response == "True"){
+                $('.search-form').removeClass("error");
+                var data = response.data;
+                data.Search.forEach(function(movie){
+                  cacheMovies.forEach(function(cachedMovie){
+                    if(movie.imdbID == cachedMovie.imdbID){
+                      movie.Rating = cachedMovie.Rating;
+                      return;
+                    }
+                  });
                 });
-              });
 
-              data.Query = query;
+                data.Query = query;
 
-              archive.push(data);
+                $scope.archive = [];
+                archive = $scope.archive;
+
+                archive.push(data);
+                
+                $scope.results = data.Search;
+              } else {
+                $('.search-form').addClass("error");
+              }
+
               
-              $scope.results = data.Search;
 
             });
           } 
