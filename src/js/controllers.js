@@ -13,73 +13,62 @@ movieControllers.controller('MoviesCtrl', ['$scope', '$http','$state',
       $scope.cacheMovies = [];
       $scope.cacheMovieDetails = [];
 
-
       var archive;
-
       var cacheMovies = $scope.cacheMovies;
-
-      
       var cacheMovieDetails = $scope.cacheMovieDetails;
 
+      //Search for a Movie
       $scope.submit = function() {
         if ($scope.search) {
-          fetch($scope.search);        
+          var query = $scope.search;
+          var isPrevSearch = false;
+
+          //Check and see if the search is already in the archive
+          if($scope.archive){
+            archive.forEach(function(archiveItem){
+              if(archiveItem.Query == query){
+                $scope.results = archiveItem.Search;
+                isPrevSearch = true;
+              }
+            });
+          } else {
+            $scope.archive = [];
+            archive = $scope.archive;
+          }
+
+          //If not in the archive make search on OMDb
+          if(!isPrevSearch){
+
+            $http.get("http://www.omdbapi.com/?s=" + $scope.search +"&type=movie").then(function(response){ 
+              
+              var data = response.data;
+
+              data.Search.forEach(function(movie){
+                cacheMovies.forEach(function(cachedMovie){
+                  if(movie.imdbID == cachedMovie.imdbID){
+                    movie.Rating = cachedMovie.Rating;
+                    return;
+                  }
+                });
+              });
+
+              data.Query = query;
+
+              archive.push(data);
+              
+              $scope.results = data.Search;
+
+            });
+          }        
         }
       };
 
-      function fetch(q){
-        var query = q;
-        var isPrevSearch = false;
-
-        if($scope.archive){
-          archive.forEach(function(archiveItem){
-            if(archiveItem.Query == query){
-              $scope.results = archiveItem.Search;
-              isPrevSearch = true;
-            }
-          });
-        } else {
-          $scope.archive = [];
-          archive = $scope.archive;
-        }
-
-        if(!isPrevSearch){
-
-          $http.get("http://www.omdbapi.com/?s=" + $scope.search +"&type=movie").then(function(response){ 
-            
-            var data = response.data;
-
-
-            data.Search.forEach(function(movie){
-              cacheMovies.forEach(function(cachedMovie){
-                if(movie.imdbID == cachedMovie.imdbID){
-                  movie.Rating = cachedMovie.Rating;
-                  return;
-                }
-              });
-            });
-
-            data.Query = query;
-
-            archive.push(data);
-            
-            $scope.results = data.Search;
-
-            console.log(archive);
-
-          });
-        }
-
-
-
-
-        
-      }
-
-      $scope.prevSearch = function(data){
+      //Select a Previous Search
+      $scope.prevSearch = function(data) {
         $scope.results = data.Search;
       }
 
+      //Set a Rating
       $scope.setRating = function(movie,num){
         
         movie.Rating = num;
@@ -88,9 +77,9 @@ movieControllers.controller('MoviesCtrl', ['$scope', '$http','$state',
 
         var id = tempMovie.imdbID;
 
-
         var isCached = false;
 
+        //Check and see if the rating is cached
         cacheMovies.forEach(function(cachedMovie){
           if(cachedMovie.imdbID == id) {
             cachedMovie.Rating = num;
@@ -101,18 +90,14 @@ movieControllers.controller('MoviesCtrl', ['$scope', '$http','$state',
         if(!isCached){
           cacheMovies.push(tempMovie);
         }
-
-        
-
-        console.log(cacheMovies);
-
       }
 
-      $scope.openModal = function(id){
-
+      //Open the details about a specific movie
+      $scope.openModal = function(id) {
 
         var isCached = false;
 
+        //Check and see if the details are already cached
         cacheMovieDetails.forEach(function(cachedDetail){
           if(cachedDetail.imdbID == id){
             $scope.modalMovie = cachedDetail;
@@ -121,6 +106,7 @@ movieControllers.controller('MoviesCtrl', ['$scope', '$http','$state',
           }
         });
 
+        //If not cached then do a search for movie by IMDB id
         if(!isCached){
           $http.get("http://www.omdbapi.com/?i=" + id).then(function(response){
             var movie = response.data;
@@ -128,15 +114,8 @@ movieControllers.controller('MoviesCtrl', ['$scope', '$http','$state',
             $('.modal').modal();
             cacheMovieDetails.push(movie);
           }); 
-        }
-        
-        
-        
-
+        } 
       }
-    
     }
-
-
   ]);
 

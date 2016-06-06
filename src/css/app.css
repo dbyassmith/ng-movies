@@ -1831,7 +1831,7 @@ header {
   .ratings {
     margin: 0px auto 50px auto; } }
 .results {
-  padding: 80px 0; }
+  padding: 80px 0 0 0; }
   .results img {
     width: 100%; }
   .results__movie {
@@ -1839,8 +1839,10 @@ header {
     background-size: cover;
     position: relative;
     margin-bottom: 10px; }
-    .results__movie:hover .tooltip {
-      display: block; }
+    .results__movie:hover {
+      cursor: pointer; }
+      .results__movie:hover .tooltip {
+        display: block; }
 
 /* ==========================================================================
   Media Queries
