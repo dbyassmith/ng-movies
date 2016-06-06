@@ -1678,11 +1678,10 @@ header {
       background: #FFF;
       position: absolute;
       bottom: -15px; }
-  .modal-content .image-wrap {
-    padding: 20px 0px 20px 10px; }
   .modal-content img {
     width: 100%; }
   .modal-content .modal-right {
+    margin-top: 30px;
     padding: 20px 10px; }
     .modal-content .modal-right dl {
       margin-bottom: 15px; }
@@ -1703,8 +1702,8 @@ header {
     border: 0px;
     background-size: 100%;
     position: absolute;
-    top: -15px;
-    right: -15px;
+    top: -6px;
+    right: -6px;
     z-index: 200; }
     @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
       .modal-content .modal-close {
@@ -1787,6 +1786,17 @@ header {
 @media (min-width: 992px) {
   .modal-lg {
     width: 900px; } }
+/* ==========================================================================
+  Media Queries
+  ========================================================================== */
+@media screen and (min-width: 768px) {
+  .modal-content .modal-right {
+    margin-top: 0px; }
+  .modal-content .modal-close {
+    top: -15px;
+    right: -15px; }
+  .modal-content .image-wrap {
+    padding: 20px 0px 20px 10px; } }
 .ratings {
   font-size: 0px;
   width: 120px;

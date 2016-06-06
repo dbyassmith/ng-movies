@@ -75,13 +75,11 @@
       bottom: -15px;
     }
   }
-  .image-wrap {
-    padding: 20px 0px 20px 10px;
-  }
   img {
     width:100%;
   }
   .modal-right {
+    margin-top:30px;
     padding: 20px 10px;
     dl {
       margin-bottom: 15px;
@@ -106,8 +104,8 @@
     border:0px;
     background-size: 100%;
     position: absolute;
-    top: -15px;
-    right: -15px;
+    top: -6px;
+    right: -6px;
     z-index: 200;
     &:hover {
       opacity: 0.8;
@@ -204,3 +202,28 @@
 @media (min-width: $screen-md-min) {
   .modal-lg { width: $modal-lg; }
 }
+
+/* ==========================================================================
+  Media Queries
+  ========================================================================== */
+
+@media screen and (min-width: $screen-sm-min) {
+  .modal-content {
+    .modal-right {
+      margin-top:0px;
+    }
+    .modal-close {
+      top: -15px;
+      right: -15px;
+    }
+    .image-wrap {
+      padding: 20px 0px 20px 10px;
+    }
+  }
+
+}
+@media screen and (min-width: $screen-md-min) {
+}
+@media screen and (min-width: $screen-lg-min) {
+}
+
