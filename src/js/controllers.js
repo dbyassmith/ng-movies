@@ -59,13 +59,15 @@ movieControllers.controller('MoviesCtrl', ['$scope', '$http','$state',
               $scope.results = data.Search;
 
             });
-          }        
+          } 
+          $('.search').blur();
         }
       };
 
       //Select a Previous Search
       $scope.prevSearch = function(data) {
         $scope.results = data.Search;
+        $('.search').val(data.Query);
       }
 
       //Set a Rating
