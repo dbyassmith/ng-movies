@@ -33,10 +33,18 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-6 col-sm-4 col-md-3" ng-repeat="movie in results">
-          <div class="results__movie" style="background-image:url('{{movie.Poster}}')">
-            <div class="tooltip">{{movie.Title}} ({{movie.Year}})</div>
+          <div class="results__movie" style="background-image:url('{{ movie.Poster!='N/A' ? movie.Poster : 'images/no-poster.jpg'}}')">
+            <div class="tooltip-wrapper">
+              <div class="tooltip">{{movie.Title}} ({{movie.Year}})</div>
+            </div>
           </div>
-
+          <ul class="ratings" data-rating="{{movie.Rating ? movie.Rating : 0}}" >
+            <li class="star" ng-click="setRating(movie,1)"></li>
+            <li class="star" ng-click="setRating(movie,2)"></li>
+            <li class="star" ng-click="setRating(movie,3)"></li>
+            <li class="star" ng-click="setRating(movie,4)"></li>
+            <li class="star" ng-click="setRating(movie,5)"></li>
+          </ul>
         </div>
       </div>
     </div>

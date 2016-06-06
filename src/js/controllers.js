@@ -10,8 +10,12 @@ movieControllers.controller('MoviesCtrl', ['$scope', '$http','$state',
     
       $scope.search = "";
       $scope.results = [];
+      $scope.cacheMovies = [];
 
       var archive;
+
+      var cacheMovies = $scope.cacheMovies;
+
       
 
 
@@ -21,29 +25,85 @@ movieControllers.controller('MoviesCtrl', ['$scope', '$http','$state',
         }
       };
 
-      function fetch(query){
+      function fetch(q){
+        var query = q;
+        var isPrevSearch = false;
 
-        $http.get("http://www.omdbapi.com/?s=" + $scope.search +"&type=movie").then(function(response){ 
-          
-          var data = response.data;
+        if($scope.archive){
+          archive.forEach(function(archiveItem){
+            if(archiveItem.Query == query){
+              $scope.results = archiveItem.Search;
+              isPrevSearch = true;
+            }
+          });
+        } else {
+          $scope.archive = [];
+          archive = $scope.archive;
+        }
 
-          data.Query = query;
+        if(!isPrevSearch){
 
-          if(!$scope.archive){
-            $scope.archive = [];
+          $http.get("http://www.omdbapi.com/?s=" + $scope.search +"&type=movie").then(function(response){ 
+            
+            var data = response.data;
 
-            archive = $scope.archive;
-          }
 
-          archive.push(data);
-          
-          $scope.results = data.Search;
+            data.Search.forEach(function(movie){
+              cacheMovies.forEach(function(cachedMovie){
+                if(movie.imdbID == cachedMovie.imdbID){
+                  movie.Rating = cachedMovie.Rating;
+                  return;
+                }
+              });
+            });
 
-        });
+            data.Query = query;
+
+            archive.push(data);
+            
+            $scope.results = data.Search;
+
+            console.log(archive);
+
+          });
+        }
+
+
+
+
+        
       }
 
       $scope.prevSearch = function(data){
         $scope.results = data.Search;
+      }
+
+      $scope.setRating = function(movie,num){
+        
+        movie.Rating = num;
+
+        var tempMovie = movie;
+
+        var id = tempMovie.imdbID;
+
+
+        var isCached = false;
+
+        cacheMovies.forEach(function(cachedMovie){
+          if(cachedMovie.imdbID == id) {
+            cachedMovie.Rating = num;
+            isCached = true;
+          }
+        });
+
+        if(!isCached){
+          cacheMovies.push(tempMovie);
+        }
+
+        
+
+        console.log(cacheMovies);
+
       }
     
     }

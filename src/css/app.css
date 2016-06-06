@@ -1615,6 +1615,39 @@ header {
     .archive ul li {
       padding: 5px 10px;
       margin-right: 10px; } }
+.ratings {
+  font-size: 0px;
+  width: 120px;
+  margin: 0px auto 70px auto; }
+
+.ratings[data-rating="1"] .star:nth-child(-n+1) {
+  background: red; }
+
+.ratings[data-rating="2"] .star:nth-child(-n+2) {
+  background-position: top; }
+
+.ratings[data-rating="3"] .star:nth-child(-n+3) {
+  background-position: top; }
+
+.ratings[data-rating="4"] .star:nth-child(-n+4) {
+  background-position: top; }
+
+.ratings[data-rating="5"] .star:nth-child(-n+5) {
+  background-position: top; }
+
+.ratings:hover .star {
+  background-position: top; }
+
+.ratings .star:hover ~ .star {
+  background-position: bottom; }
+
+.ratings .star:hover {
+  background-position: top;
+  cursor: pointer; }
+
+@media screen and (min-width: 768px) {
+  .ratings {
+    margin: 0px auto 50px auto; } }
 .results {
   padding: 80px 0; }
   .results img {
@@ -1623,7 +1656,7 @@ header {
     padding-bottom: 150%;
     background-size: cover;
     position: relative;
-    margin-bottom: 70px; }
+    margin-bottom: 10px; }
     .results__movie:hover .tooltip {
       display: block; }
 
@@ -1632,9 +1665,7 @@ header {
   ========================================================================== */
 @media screen and (min-width: 768px) {
   .results {
-    padding: 50px 0px; }
-    .results__movie {
-      margin-bottom: 50px; } }
+    padding: 50px 0px; } }
 .tooltip {
   position: absolute;
   width: 100%;
@@ -1642,7 +1673,7 @@ header {
   font-size: 12px;
   padding: 5px;
   text-align: center;
-  top: -35px;
+  bottom: 0px;
   border-radius: 3px;
   font-weight: bold; }
   .tooltip:after {
@@ -1657,9 +1688,30 @@ header {
     left: calc(50% - 5px);
     bottom: -10px; }
 
+.tooltip-wrapper {
+  position: absolute;
+  display: block;
+  height: 1px;
+  top: -7px;
+  width: 100%; }
+
 /* ==========================================================================
   Media Queries
   ========================================================================== */
 @media screen and (min-width: 768px) {
   .tooltip {
     display: none; } }
+.star {
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/star.png");
+  background-position: bottom;
+  margin-right: 5px;
+  float: left;
+  display: block; }
+  @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+    .star {
+      background-image: url("../images/star@2x.png");
+      background-size: 20px 40px; } }
+  .star:last-child {
+    margin-right: 0px; }
