@@ -53,9 +53,10 @@ movieControllers.controller('MoviesCtrl', ['$scope', '$http','$state',
                 });
 
                 data.Query = query;
-
-                $scope.archive = [];
-                archive = $scope.archive;
+                if(!$scope.archive){
+                  $scope.archive = [];
+                  archive = $scope.archive;
+                }
 
                 archive.push(data);
                 
